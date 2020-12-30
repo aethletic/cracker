@@ -3,6 +3,4 @@ vendor
 storage
 composer.lock
 train
-test.php
-crack.php
 steam.traineddata

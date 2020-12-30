@@ -15,6 +15,7 @@ class Crack
     private $storage;
     private $model = 'eng';
     private $executable = false;
+    private $tessdata = false;
 
     public function __construct($image)
     {
@@ -49,6 +50,12 @@ class Crack
         return $this;
     }
 
+    public function data($tessdata = false)
+    {
+        $this->tessdata = $tessdata;
+        return $this;
+    }
+
     private function iteration() {
         $this->image = $this->manager->make($this->file);
 
@@ -56,13 +63,16 @@ class Crack
             ->save("{$this->storage}/resolve.gif");
 
         $ocr = (new TesseractOCR("{$this->storage}/resolve.gif"))
-            ->tessdataDir(__DIR__ . '/../')
             ->lang($this->model)
             ->allowlist(array_merge(range('A', 'Z'), range(0, 9), ['%', '@', '&']))
             ->psm(7);
 
         if ($this->executable) {
             $ocr->executable($this->executable); 
+        }
+
+        if ($this->tessdata) {
+            $ocr->tessdataDir($this->tessdata); 
         }
 
         $text = $ocr->run(); 
