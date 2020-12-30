@@ -4,7 +4,7 @@ use Cracker\Crack;
 
 require 'vendor/autoload.php';
 
-$cracked = (new Crack('https://steamcommunity.com/public/captcha.php?gid=XXXXXXXXXXXXXXXXXXXXXXXX'))
+$cracked = (new Crack('https://steamcommunity.com/public/captcha.php'))
     ->storage(__DIR__ . '/storage')
     ->data(__DIR__)
     ->model('steam')
