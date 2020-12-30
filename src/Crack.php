@@ -117,7 +117,7 @@ class Crack
             return $returnArray ? [
                 'sortedChars' => false,
                 'mostUsedChars' => false,
-                'lenght' => false,
+                // 'lenght' => false,
                 'captcha' => '',
                 'time' => round(microtime(true) - $start, 4),
             ] : '';
@@ -134,10 +134,9 @@ class Crack
         $captcha = implode(head(array_chunk($mostUsedChars, $lenght)));
 
         return $returnArray ? [
-            'counts' => $this->captchas['count'],
             'sortedChars' => $sortedChars,
             'mostUsedChars' => $mostUsedChars,
-            'lenght' => $lenght,
+            // 'lenght' => $lenght,
             'captcha' => $captcha,
             'time' => round(microtime(true) - $start, 4),
         ] : $captcha;
