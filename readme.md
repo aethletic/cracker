@@ -80,6 +80,8 @@ Array
 )
 ```
 
+**Капча:** ![MJXNP9](https://raw.githubusercontent.com/aethletic/cracker/master/.github/captcha.png)
+
 Как видно из результата, в `sortedChars` все 3 итерации распознали одни и те же символы.
 
 Время выполнение (ключ `time`) заняло 2 секунды, т. е. чем больше итераций, тем больше времени занимает. 
