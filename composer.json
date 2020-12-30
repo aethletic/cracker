@@ -1,0 +1,14 @@
+{
+    "name": "aethletic/cracker",
+    "description": "Crack, crack aaand crack it!",
+    "require": {
+        "intervention/image": "^2.5",
+        "thiagoalessio/tesseract_ocr": "^2.9",
+        "illuminate/collections": "^8.20"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cracker\\": "src/"
+        }
+    }
+}
