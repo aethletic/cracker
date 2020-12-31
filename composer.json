@@ -3,8 +3,7 @@
     "description": "Crack, crack aaand crack it!",
     "require": {
         "intervention/image": "^2.5",
-        "thiagoalessio/tesseract_ocr": "^2.9",
-        "illuminate/collections": "^8.20"
+        "thiagoalessio/tesseract_ocr": "^2.9"
     },
     "autoload": {
         "psr-4": {
