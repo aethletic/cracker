@@ -117,7 +117,6 @@ class Crack
             return $returnArray ? [
                 'sortedChars' => false,
                 'mostUsedChars' => false,
-                // 'lenght' => false,
                 'captcha' => '',
                 'time' => round(microtime(true) - $start, 4),
             ] : '';
@@ -129,14 +128,12 @@ class Crack
             $mostUsedChars[$key] = array_key_first($chars);
         }
 
-        // $lenght = head(collect($this->captchas['count'])->mode());
         $lenght = 6;
         $captcha = implode(head(array_chunk($mostUsedChars, $lenght)));
 
         return $returnArray ? [
             'sortedChars' => $sortedChars,
             'mostUsedChars' => $mostUsedChars,
-            // 'lenght' => $lenght,
             'captcha' => $captcha,
             'time' => round(microtime(true) - $start, 4),
         ] : $captcha;
