@@ -16,6 +16,7 @@ class Crack
     private $model = 'eng';
     private $executable = false;
     private $tessdata = false;
+    private $proxy = false;
 
     public function __construct($image)
     {
@@ -44,6 +45,12 @@ class Crack
         return $this;
     }
 
+    public function proxy($proxy)
+    {
+        $this->proxy = $proxy;
+        return $this;
+    }
+
     public function ocr($executable = false)
     {
         $this->executable = $executable;
@@ -57,7 +64,21 @@ class Crack
     }
 
     private function iteration() {
-        $this->image = $this->manager->make($this->file);
+        if (is_file($this->file)) {
+            $this->image = $this->manager->make($this->file);
+        } else {
+            if (!$this->proxy) {
+                $this->image = $this->manager->make($this->file);
+            } else{
+                $client = new \GuzzleHttp\Client();
+
+                $res = $client->request("GET", $this->file, [
+                    "proxy" => $this->proxy,
+                ]);
+    
+                $this->image = $this->manager->make($res->getBody());
+            }
+        }
 
         Image::convert($this->image, $this->manager)
             ->save("{$this->storage}/resolve.gif");
