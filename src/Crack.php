@@ -129,7 +129,7 @@ class Crack
         }
 
         $lenght = 6;
-        $captcha = implode(head(array_chunk($mostUsedChars, $lenght)));
+        $captcha = implode(array_chunk($mostUsedChars, $lenght)[0]);
 
         return $returnArray ? [
             'sortedChars' => $sortedChars,
