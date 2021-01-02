@@ -72,11 +72,16 @@ class Crack
             } else{
                 $client = new \GuzzleHttp\Client();
 
-                $res = $client->request("GET", $this->file, [
-                    "proxy" => $this->proxy,
-                ]);
-    
-                $this->image = $this->manager->make($res->getBody());
+                try {
+                    $res = $client->request("GET", $this->file, [
+                        'proxy' => $this->proxy,
+                        'timeout' => 5,
+                    ]);
+        
+                    $this->image = $this->manager->make($res->getBody());
+                } catch (\Throwable $th) {
+                    return false;
+                }
             }
         }
 
