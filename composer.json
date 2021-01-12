@@ -1,6 +1,8 @@
 {
     "name": "chipslays/cracker",
     "description": "Crack, crack aaand crack it!",
+    "type": "library",
+    "license": "MIT",
     "require": {
         "intervention/image": "^2.5",
         "thiagoalessio/tesseract_ocr": "^2.9"
