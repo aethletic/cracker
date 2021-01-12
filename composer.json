@@ -1,5 +1,5 @@
 {
-    "name": "aethletic/cracker",
+    "name": "chipslays/cracker",
     "description": "Crack, crack aaand crack it!",
     "require": {
         "intervention/image": "^2.5",
