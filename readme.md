@@ -4,7 +4,7 @@
 
 ## Проблема
 
-При написании библиотеки [Steam Client](https://github.com/aethletic/steam-client), я сталкивался с вводом капчи. В какой-то момент постоянный ввод капчи стал надоедать, поэтому было принято решение сделать распознование капчи.
+При написании библиотеки [Steam Client](https://github.com/chipslays/steam-client), я сталкивался с вводом капчи. В какой-то момент постоянный ввод капчи стал надоедать, поэтому было принято решение сделать распознование капчи.
 
 ## Решение
 
@@ -17,7 +17,7 @@
 ## Установка
 
 ```bash
-$ composer require aethletic/cracker
+$ composer require chipslays/cracker
 ```
 
 ## Использование
@@ -80,7 +80,7 @@ Array
 )
 ```
 
-**Капча:** ![MJXNP9](https://raw.githubusercontent.com/aethletic/cracker/master/.github/captcha.png)
+**Капча:** ![MJXNP9](https://raw.githubusercontent.com/chipslays/cracker/master/.github/captcha.png)
 
 Как видно из результата, в `sortedChars` все 3 итерации распознали одни и те же символы.
 
