@@ -11,8 +11,12 @@ class Data
      */
     private static $manager;
 
-
-    public static function prepare($from, $to) 
+    /**
+     * @param string $from
+     * @param string $to
+     * @return void
+     */
+    public static function prepare($from, $to)
     {
         $images = glob($from);
 
@@ -28,7 +32,7 @@ class Data
             $current = $key + 1;
 
             $filename = self::getFilename($file);
-      
+
             Image::convert(self::$manager->make($file), self::$manager)
                 ->save("{$to}/{$filename}.png", null, 'png');
 
@@ -36,10 +40,17 @@ class Data
             copy("{$dir}/{$filename}.gt.txt", "{$to}/{$filename}.gt.txt");
 
             echo "[{$current}/{$countOfAll}] converted: {$filename}" . PHP_EOL;
-        }    
+        }
     }
 
-    public static function normalize($imagesDir, $trashDir) 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $imagesDir
+     * @param [type] $trashDir
+     * @return void
+     */
+    public static function normalize($imagesDir, $trashDir)
     {
         $files = glob($imagesDir);
 
@@ -62,7 +73,13 @@ class Data
         }
     }
 
-    private static function getFilename($file) 
+    /**
+     * Get filename.
+     *
+     * @param string $file
+     * @return string
+     */
+    private static function getFilename($file)
     {
         $arr = explode('.', basename($file));
         return array_shift($arr);
