@@ -36,8 +36,8 @@ use Cracker\Crack;
 require 'vendor/autoload.php';
 
 $cracked = (new Crack('https://steamcommunity.com/public/captcha.php?gid=387475048XXXXXXXXXXXXXXXX'))
-    ->storage(__DIR__ . '/storage')
-    ->data(__DIR__)
+    ->temp(__DIR__ . '/storage')
+    ->tessdata(__DIR__)
     ->model('steam')
     ->iterations(3)
     ->resolve(true);
@@ -102,7 +102,7 @@ Array
 
 ```php
 $cracked = (new Crack($url))
-    ->storage(__DIR__ . '/storage')
+    ->temp(__DIR__ . '/storage')
     ->model('eng')
     ->iterations(10)
     ->resolve(true);
