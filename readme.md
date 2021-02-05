@@ -35,12 +35,19 @@ use Cracker\Crack;
 
 require 'vendor/autoload.php';
 
-$cracked = (new Crack('https://steamcommunity.com/public/captcha.php?gid=387475048XXXXXXXXXXXXXXXX'))
-    ->temp(__DIR__ . '/storage')
-    ->tessdata(__DIR__)
-    ->model('steam')
-    ->iterations(3)
-    ->resolve(true);
+
+/**
+ * Можно передать файл или ссылку.
+ * Например:
+ *      https://steamcommunity.com/public/captcha.php?gid=387475048XXXXXXXXXXXXXXXX
+ *      images/captcha.png
+ */
+$cracked = (new Crack('https://raw.githubusercontent.com/chipslays/cracker/master/.github/captcha.png'))
+    ->temp(__DIR__ . '/storage') // папка для временных файлов
+    ->tessdata(__DIR__) // указываем путь где храняться модели
+    ->model('steam') // используем свою модель
+    ->iterations(3) // количество итераций
+    ->resolve(true); // true - вернуть массив
 
 print_r($cracked);
 
@@ -90,7 +97,7 @@ Array
 
 **Капча:** ![MJXNP9](https://raw.githubusercontent.com/chipslays/cracker/master/.github/captcha.png)
 
-Как видно из результата, в `sortedChars` все 3 итерации распознали одни и те же символы.
+Как видно из результата, в `sortedChars` все 3 итерации распознали одни и те же символы. 
 
 Время выполнение (ключ `time`) заняло 2 секунды, т. е. чем больше итераций, тем больше времени занимает. 
 
