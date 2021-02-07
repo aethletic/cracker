@@ -33,7 +33,7 @@ class Data
 
             $filename = self::getFilename($file);
 
-            Image::convert(self::$manager->make($file), self::$manager)
+            Image::prepareConvert(self::$manager->make($file), self::$manager)
                 ->save("{$to}/{$filename}.png", null, 'png');
 
             $dir = dirname($file);

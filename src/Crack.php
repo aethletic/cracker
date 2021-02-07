@@ -23,7 +23,7 @@ class Crack
      *
      * @param string $image Can be File or Url
      */
-    public function __construct($image)
+    public function __construct($image = null)
     {
         $this->manager = new ImageManager([
             'driver' => 'imagick',
@@ -65,6 +65,18 @@ class Crack
     public function model($model = 'eng')
     {
         $this->model = $model;
+        return $this;
+    }
+
+    /**
+     * Set captcha.
+     *
+     * @param string $image Can be File or Url
+     * @return Crack
+     */
+    public function captcha($image)
+    {
+        $this->file = $image;
         return $this;
     }
 
@@ -133,10 +145,9 @@ class Crack
             }
         }
 
-        Image::convert($this->image, $this->manager)
-            ->save("{$this->storage}/resolve.gif");
+        Image::convert($this->image, $this->manager)->save("{$this->storage}/converted.jpg");
 
-        $ocr = (new TesseractOCR("{$this->storage}/resolve.gif"))
+        $ocr = (new TesseractOCR("{$this->storage}/converted.jpg"))
             ->lang($this->model)
             ->allowlist(array_merge(range('A', 'Z'), range(0, 9), ['%', '@', '&']))
             ->psm(7);
@@ -151,7 +162,8 @@ class Crack
 
         $text = $ocr->run();
 
-        unlink("{$this->storage}/resolve.gif");
+        // TODO uncomment
+        // unlink("{$this->storage}/resolve.gif");
 
         return trim($text) !== '' ? $text : false;
     }

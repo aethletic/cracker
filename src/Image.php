@@ -22,9 +22,39 @@ class Image
      *
      * @param object $image
      * @param ImageManager $manager
-     * @return void
+     * @return object
      */
     public static function convert($image, $manager)
+    {
+        self::$image = $image;
+
+        self::$imageWidth = self::$image->width();
+        self::$imageHeight = self::$image->height();
+
+        self::$canvas = $manager->canvas(self::$imageWidth, self::$imageHeight, '#fff');
+
+        /** преоброзовываем изображение */
+        self::$image
+            ->greyscale()
+            ->colorize(0, 0, 0)
+            ->contrast(5)
+            ->gamma(0.6)
+            ->invert();
+
+        self::$image->save(__DIR__ . '/../storage/image.jpg');
+
+        // self::$image->limitColors(20);
+
+        self::treshold(120);
+        self::$canvas->blur(1);
+        self::treshold(70);
+        self::$canvas->blur(1);
+    
+
+        return self::$canvas;
+    }
+
+    public static function prepareConvert($image, $manager)
     {
         self::$image = $image;
 
