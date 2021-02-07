@@ -33,7 +33,7 @@ class Data
 
             $filename = self::getFilename($file);
 
-            Image::prepareConvert(self::$manager->make($file), self::$manager)
+            Image::convert(self::$manager->make($file), self::$manager)
                 ->save("{$to}/{$filename}.png", null, 'png');
 
             $dir = dirname($file);
@@ -46,8 +46,8 @@ class Data
     /**
      * Undocumented function
      *
-     * @param [type] $imagesDir
-     * @param [type] $trashDir
+     * @param string $imagesDir
+     * @param string $trashDir
      * @return void
      */
     public static function normalize($imagesDir, $trashDir)

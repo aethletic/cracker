@@ -34,17 +34,18 @@ class Image
         self::$canvas = $manager->canvas(self::$imageWidth, self::$imageHeight, '#fff');
 
         /** преоброзовываем изображение */
+        // BEST
         self::$image
             ->greyscale()
             ->colorize(0, 0, 0)
-            ->contrast(5)
+            ->contrast(5.5)
             ->gamma(0.6)
             ->invert();
 
         self::$image->save(__DIR__ . '/../storage/image.jpg');
 
-        // self::$image->limitColors(20);
 
+        // BEST
         self::treshold(120);
         self::$canvas->blur(1);
         self::treshold(70);
